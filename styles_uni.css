@@ -1,0 +1,568 @@
+/* ================================================================
+   GLOBAL SETTINGS
+   ================================================================ */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f1f2ec;
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
+
+
+/* ================================================================
+   SIDEBAR
+   ================================================================ */
+.sidebar {
+  width: 200px;
+  background-color: #768fa6;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 200px;  
+  height: 200px; 
+  background-color: #fbfbf0;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav {
+  width: 100%;
+}
+
+.nav a {
+  display: block;
+  padding: 10px 15px;
+  margin: 5px 0;
+  background-color: #f0f2f5;
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.nav a:hover {
+  background-color: #013063;
+  color: #fff;
+}
+
+/* ================================================================
+   MAIN CONTENT AREA
+   ================================================================ */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.content {
+  flex: 1;
+}
+
+.header {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-bottom: 1px solid #ccc;
+}
+
+.header h1 {
+  margin: 0;
+  font-family: Palatino;
+  font-size: 3em;
+  color: #003366;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+#login-area {
+  margin-left: auto; /* Button rechts oben */
+  display: flex;
+  align-items: center;
+}
+
+/* ================================================================
+   DASHBOARD CONTENT
+   ================================================================ */
+
+
+#main-content .dashboard-content {
+  padding: 20px 40px; /* Abstand von Sidebar und Rändern */
+}
+
+.dashboard {
+  max-width: 1000px;
+}
+
+.dashboard h2 {
+  font-weight: normal;
+  font-size: 1.8em;
+}
+
+.username-highlight {
+  font-weight: bold;
+  color: #3399ff; /* hellblau für Username */
+}
+
+/* Dashboard Buttons */
+.dashboard-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+
+/* ================================================================
+   TEXTBLOCKS
+   ================================================================ */
+.textblock {
+  max-width: 600px; 
+  padding: 20px 40px;
+  text-align: justify;
+  margin-bottom: 30px;
+}
+
+
+/* Nur für Sub-Content im Dashboard, überschreibt padding */
+#dashboard-content .textblock {
+  padding: 0;          /* bündig mit Dashboard-Bereich */
+  margin: 20px 0 30px 0;
+}
+
+
+/* ================================================================
+   MAIN IMAGES
+   ================================================================ */
+.main-image { 
+  width: 100%; 
+  height: auto; 
+  object-fit: contain; 
+  display: block; 
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.footer {
+  background-color: #e9ecef;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #333;
+}
+
+/* ================================================================
+   FORMS
+   ================================================================ */
+form label {
+  display: inline-block;
+  min-width: 120px; 
+  white-space: nowrap;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Login Form */
+.login-form {
+  max-width: 400px;
+  margin: 30px 40px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.login-form h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.login-form select,
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #013063;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Delete Form */
+.delete-form {
+  margin-top: 1em;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: inset 0 0 5px #ddd;
+  max-width: 400px;
+}
+
+.delete-form input {
+  width: auto;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* ================================================================
+   TABLES
+   ================================================================ */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  font-size: 0.95em;
+  color: #333;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+thead th {
+  background-color: #013063;
+  color: white;
+  border-radius: 8px 8px 0 0;
+  user-select: none;
+}
+
+tbody tr {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: background-color 0.3s;
+}
+
+tbody tr:hover {
+  background-color: #f1f8ff;
+}
+
+tbody td:first-child {
+  font-weight: bold;
+  color: #007BFF;
+}
+
+/* ================================================================
+   BUTTONS
+   ================================================================ */
+button {
+  padding: 8px 15px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #013063;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* ================================================================
+   INPUTS / SELECTS
+   ================================================================ */
+input, select {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ================================================================
+   HEADER LOGIN/LOGOUT BUTTONS
+   ================================================================ */
+#login-area .btn {
+  background-color: #003366; 
+  color: white;
+  padding: 6px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  user-select: none;
+  font-size: 1rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#login-area .btn:hover {
+  background-color: #0056b3; 
+}
+
+#login-area .btn-logout {
+  background-color: #d65555;
+}
+
+#login-area .btn-logout:hover {
+  background-color: #b00000;
+}
+
+/* ================================================================
+   REGISTER FORM STYLES
+   ================================================================ */
+.register-form {
+  max-width: 400px;
+  margin: 30px 40px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.register-form h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Einheitliche Höhe für alle Registerfelder */
+.register-form input,
+.register-form select,
+.password-field input {
+  width: 100%;
+  padding: 10px;       /* gleiche Innenabstände */
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1em;      /* gleiche Schriftgröße */
+  height: auto;        /* sicherstellen, dass padding die Höhe bestimmt */
+}
+
+
+.register-btn {
+  width: 130px;       /* gleiche Breite wie Show-Buttons */
+  padding: 0.6em 1em; /* gleiche Höhe/Innenabstand */
+  font-size: 0.9em;
+  border-radius: 5px;
+  border: none;
+  background-color: #013063;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+.register-btn:hover {
+  background-color: #0056b3;
+}
+
+
+.register-link {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.show-password {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.show-password label {
+  margin-left: 5px;
+  font-size: 0.9em;
+}
+
+/* Einheitliche Formulare */
+.login-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.login-form p {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.login-form a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.login-form a:hover {
+  text-decoration: underline;
+}
+
+.password-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-container input {
+  flex: 1;
+  padding-right: 2.5em;
+}
+
+.show-password {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.show-password:hover {
+  color: #000;
+}
+
+/* --- Formular-Layout allgemein --- */
+.form-container {
+  max-width: 400px;
+  margin: 2em auto 2em 50px;
+  padding: 2em;
+  background: #ffffffcc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+.form-container.hidden {
+  display: none;
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #003366;
+}
+
+.form-container label {
+  display: block;
+  margin-top: 1em;
+  font-weight: bold;
+}
+
+.form-container input,
+.form-container select {
+  width: 100%;
+  padding: 0.6em;
+  margin-top: 0.3em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* ================================================================
+   LOGIN BUTTON + SHOW PASSWORD UNTER DEM FELD (NEBENEINANDER)
+   ================================================================ */
+.password-field {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.password-field input {
+  width: 100%;
+  padding: 0.6em;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+/* Container für beide Buttons nebeneinander */
+.password-actions {
+  display: flex;
+  justify-content: space-between; /* Login links, Show Password rechts */
+  align-items: center;
+  margin-top: 0.8em;
+  gap: 10px; /* kleiner Abstand zwischen Buttons */
+}
+
+/* Gemeinsames Button-Layout */
+.password-actions button {
+  padding: 0.6em 1.2em;
+  font-size: 0.95em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  flex: 1; /* beide Buttons gleich breit */
+}
+
+/* Login-Button links */
+.login-btn {
+  background-color: #013063;
+  color: white;
+  font-weight: bold;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Show-Password-Button rechts */
+.show-password-btn {
+  background-color: #b6b5b5;
+  color: #ffffff;
+}
+
+.show-password-btn:hover {
+  background-color: #8d8383;
+}
+
+
+/* ================================================================
+   LINKS UNTER DEM FORMULAR
+   ================================================================ */
+
+.form-links {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.form-links a {
+  color: #003366;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.form-links a:hover {
+  text-decoration: underline;
+}
+
+
+

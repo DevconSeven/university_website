@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>International University of Mustercity</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon_uni.ico" />
+  <link rel="stylesheet" href="styles_uni.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="assets/LogoUniMusterstadt.png" alt="University Logo" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+    <nav class="nav">
+      <a href="index.html">Homepage</a>
+      <a href="courses.html">Courses</a>
+      <a href="research.html">Research</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html" id="userAreaLink">User Area</a>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <div class="main">
+    <header class="header">
+      <nav class="main-nav">
+        <div id="login-area">
+          <a href="login.html" id="loginBtn" class="btn">Login</a>
+        </div>
+      </nav>
+      <h1>International University of Mustercity</h1>
+    </header>
+
+    <main class="content" id="main-content">
+      <!-- ============================================================
+          LOGIN FORM
+          ============================================================ -->
+      <div class="form-container" id="loginFormContainer">
+        <h2>Login</h2>
+
+        <label for="role">Select Role:</label>
+        <select id="role" name="role">
+          <option value="student">Student</option>
+          <option value="lecturer">Lecturer</option>
+          <option value="secretariat">Secretariat</option>
+          <option value="admin">Admin</option>
+        </select>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required />
+
+        <label for="password">Password:</label>
+        <div class="password-field">
+          <input type="password" id="password" name="password" placeholder="Enter your password" required />
+        </div>
+
+        <div class="password-actions">
+          <button type="submit" class="login-btn" onclick="login()">Login</button>
+          <button type="button" class="show-password-btn" onclick="togglePassword('password', this)">Show Password</button>
+        </div>
+
+        <div class="form-links">
+          <a href="#" id="forgotPasswordLink" onclick="showForgotPassword()">Forgot Password?</a>
+          <a href="#" id="showRegisterLink" onclick="toggleRegisterForm()">New here? Register</a>
+        </div>
+      </div>
+
+      <!-- ============================================================
+          REGISTRATION FORM
+          ============================================================ -->
+      <div class="form-container hidden" id="registerFormContainer">
+        <h2>Register</h2>
+
+        <label for="registerRole">Select Role:</label>
+        <select id="registerRole" name="registerRole">
+          <option value="student">Student</option>
+          <option value="lecturer">Lecturer</option>
+          <option value="secretariat">Secretariat</option>
+        </select>
+
+        <label for="regUsername">Username:</label>
+        <input type="text" id="regUsername" name="regUsername" placeholder="Choose a username" required />
+
+        <label for="regPassword">Password:</label>
+        <div class="password-field">
+          <input type="password" id="regPassword" name="regPassword" placeholder="Enter password" required />
+          <button type="button" class="show-password-btn" onclick="togglePassword('regPassword', this)">Show Password</button>
+        </div>
+
+        <label for="regPassword2">Repeat Password:</label>
+        <div class="password-field">
+          <input type="password" id="regPassword2" name="regPassword2" placeholder="Repeat password" required />
+          <button type="button" class="show-password-btn" onclick="togglePassword('regPassword2', this)">Show Password</button>
+        </div>
+
+        <button class="login-btn" onclick="register()">Register</button>
+
+        <div class="form-links">
+          <a href="#" onclick="toggleRegisterForm()">Back to Login</a>
+        </div>
+      </div>
+
+      <!-- ============================================================
+          FORGOT PASSWORD FORM
+          ============================================================ -->
+      <div class="form-container hidden" id="forgotPasswordContainer">
+        <h2>Reset Password</h2>
+        <p>Enter your username. If your account exists, a reset link will be sent to your registered email.</p>
+
+        <label for="forgotUsername">Username:</label>
+        <input type="text" id="forgotUsername" name="forgotUsername" placeholder="Your username" required />
+
+        <button class="login-btn" onclick="sendPasswordReset()">Send Reset Link</button>
+
+        <div class="form-links">
+          <a href="#" onclick="showLoginForm()">Back to Login</a>
+        </div>
+      </div>
+    </main>
+
+
+    <footer class="footer">
+      © 2025 International University of Mustercity | <a href="#">Imprint</a> | <a href="#">Privacy Policy</a>
+    </footer>
+  </div>
+
+  <script src="scripts.js"></script>
+  
+  <script>
+    function togglePassword(id, btn) {
+      const field = document.getElementById(id);
+      if (field.type === "password") {
+        field.type = "text";
+        btn.textContent = "Hide Password";
+      } else {
+        field.type = "password";
+        btn.textContent = "Show Password";
+      }
+    }
+
+    function toggleRegisterForm() {
+      document.getElementById("loginFormContainer").classList.toggle("hidden");
+      document.getElementById("registerFormContainer").classList.toggle("hidden");
+    }
+
+    function showForgotPassword() {
+      document.getElementById("loginFormContainer").classList.add("hidden");
+      document.getElementById("forgotPasswordContainer").classList.remove("hidden");
+    }
+
+    function showLoginForm() {
+      document.getElementById("forgotPasswordContainer").classList.add("hidden");
+      document.getElementById("loginFormContainer").classList.remove("hidden");
+    }
+  </script>
+
+
+  <script>
+    window.addEventListener("load", () => {
+      fetch("check_session.php")
+        .then(response => response.json())
+        .then(data => {
+          if (data.loggedIn) {
+            // User bereits eingeloggt, Redirect zum passenden Dashboard
+            switch (data.role.toLowerCase()) {
+              case 'admin':
+                window.location.href = 'dashboard_admin.php';
+                break;
+              case 'secretariat':
+                window.location.href = 'dashboard_secretariat.php';
+                break;
+              // Weitere Rollen hier ergänzen, z.B. student, lecturer, etc.
+              default:
+                window.location.href = 'dashboard.php'; // Fallback-Page
+            }
+          }
+          // Falls nicht eingeloggt bleibt man hier auf der Login-Seite
+        })
+        .catch(err => {
+          console.error("Fehler bei Session-Check:", err);
+          // Im Fehlerfall auch hier keine Weiterleitung
+        });
+    });
+  </script>
+</body>
+</html>
